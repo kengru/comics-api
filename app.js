@@ -5,6 +5,7 @@ import cron from "node-cron";
 import dotenv from "dotenv";
 
 import mangasRoutes from "./routes/mangas";
+import authRoutes from "./routes/auth";
 import fetchMangas from "./jobs/fetch";
 
 const app = express();
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.use("/auth", authRoutes);
 app.use("/mangas", mangasRoutes);
 
 // Error handling
