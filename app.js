@@ -1,7 +1,10 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import cron from "node-cron";
+import bodyParser from "body-parser";
 
-const feedRoutes = require("./routes/feed");
+import feedRoutes from "./routes/feed";
+import fetchMangas from "./jobs/fetch";
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -12,5 +15,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/feed", feedRoutes);
+
+cron.schedule("* * * * *", () => {
+  fetchMangas();
+});
 
 app.listen(8080);
