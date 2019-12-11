@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cron from "node-cron";
 import dotenv from "dotenv";
 
-import feedRoutes from "./routes/feed";
+import mangasRoutes from "./routes/mangas";
 import fetchMangas from "./jobs/fetch";
 
 const app = express();
@@ -20,7 +20,11 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use("/feed", feedRoutes);
+
+// Routes
+app.use("/mangas", mangasRoutes);
+
+// Error handling
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.statusCode || 500;
@@ -32,7 +36,7 @@ cron.schedule("* 1 * * *", () => {
   fetchMangas();
 });
 
-// mongoose deprecations
+// mongoose
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
