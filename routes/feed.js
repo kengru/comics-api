@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 
-const feedController = require("../controllers/feed");
+import feedController from "../controllers/feed";
 const router = express.Router();
 
 // GET /feed/mangas

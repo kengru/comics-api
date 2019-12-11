@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 app.use("/feed", feedRoutes);
 
-cron.schedule("* * * * *", () => {
+cron.schedule("* 1 * * *", () => {
   fetchMangas();
 });
 
