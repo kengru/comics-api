@@ -1,10 +1,10 @@
 import express from "express";
 
-import feedController from "../controllers/feed";
+import feedController from "../controllers/mangas";
 const router = express.Router();
 
 // GET /feed/mangas
 router.get("/mangas", feedController.getMangas);
-router.post("/mangas", feedController.postMangas);
+router.post("/mangas", feedController.createManga);
 
-module.exports = router;
+export default router;
