@@ -1,6 +1,6 @@
 import express from "express";
-import cron from "node-cron";
 import bodyParser from "body-parser";
+import cron from "node-cron";
 
 import feedRoutes from "./routes/feed";
 import fetchMangas from "./jobs/fetch";
