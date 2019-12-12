@@ -6,6 +6,7 @@ import authController from "../controllers/auth";
 import User from "../models/user";
 const router = express.Router();
 
+// ROUTES for /auth/
 router.put(
   "/signup",
   [
