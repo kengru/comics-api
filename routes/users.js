@@ -1,5 +1,4 @@
 import express from "express";
-import { body } from "express-validator";
 
 import usersController from "../controllers/users";
 import isAuth from "../middleware/is-auth";

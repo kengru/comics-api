@@ -21,7 +21,7 @@ const createManga = async (req, res, next) => {
   try {
     const saved = await manga.save();
     res.status(201).json({
-      message: "Manga added successfully!",
+      message: "Manga added successfully.",
       manga: saved
     });
   } catch (err) {
@@ -55,7 +55,7 @@ const updateManga = async (req, res, next) => {
     manga.lastLink = lastLink;
     await manga.save();
     res.status(200).json({
-      message: "Manga updated!"
+      message: "Manga updated."
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -76,7 +76,7 @@ const deleteManga = async (req, res, next) => {
       throw error;
     }
     res.status(200).json({
-      message: "Manga deleted!"
+      message: "Manga deleted."
     });
   } catch (err) {
     if (!err.statusCode) {

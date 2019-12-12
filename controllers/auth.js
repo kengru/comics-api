@@ -26,7 +26,7 @@ const signUp = async (req, res, next) => {
     });
     const result = await user.save();
     res.status(201).json({
-      message: "User created!",
+      message: "User created.",
       userId: result._id
     });
   } catch (err) {
@@ -50,7 +50,7 @@ const logIn = async (req, res, next) => {
     }
     const check = await bcrypt.compare(password, user.password);
     if (!check) {
-      const error = new Error("Wrong password!");
+      const error = new Error("Wrong password.");
       error.statusCode = 401;
       throw error;
     }
