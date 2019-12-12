@@ -2,6 +2,8 @@ import express from "express";
 import { body } from "express-validator";
 
 import mangasController from "../controllers/mangas";
+import isAuth from "../middleware/is-auth";
+
 const router = express.Router();
 
 // ROUTES for /mangas/
@@ -22,6 +24,7 @@ router.post(
       .trim()
       .isLength({ min: 8 })
   ],
+  isAuth,
   mangasController.createManga
 );
 router.put(
