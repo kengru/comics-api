@@ -36,6 +36,33 @@ const signUp = async (req, res, next) => {
   }
 }
 
+const logIn = async (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  
+  try {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      const error = new Error("A user with this email could not be found.");
+      error.statusCode = 401;
+      next(error);
+    }
+    const check = await bcrypt.compare(password, user.password);
+    if (!check) {
+      const error = new Error("Wrong password!");
+      error.statusCode = 401;
+      next(error);
+    }
+    
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+}
+
 export default {
-  signUp: signUp
+  signUp: signUp,
+  logIn: logIn
 };

@@ -33,5 +33,6 @@ router.put(
   ],
   authController.signUp
 );
+router.post("/login", authController.logIn);
 
 export default router;
