@@ -9,6 +9,7 @@ const router = express.Router();
 // ROUTES for /mangas/
 router.post(
   "/",
+  isAuth,
   [
     body("title")
       .trim()
@@ -24,11 +25,11 @@ router.post(
       .trim()
       .isLength({ min: 8 })
   ],
-  isAuth,
   mangasController.createManga
 );
 router.put(
   "/:mangaId",
+  isAuth,
   [
     body("lastChapter").isNumeric(),
     body("lastLink")
@@ -37,6 +38,6 @@ router.put(
   ],
   mangasController.updateManga
 );
-router.delete("/:mangaId", mangasController.deleteManga);
+router.delete("/:mangaId", isAuth, mangasController.deleteManga);
 
 export default router;
