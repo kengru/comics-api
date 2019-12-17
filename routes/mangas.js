@@ -7,6 +7,7 @@ import isAuth from "../middleware/is-auth";
 const router = express.Router();
 
 // ROUTES for /mangas/
+router.get("/:mangaId", isAuth, mangasController.getManga);
 router.post(
   "/",
   isAuth,

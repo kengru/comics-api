@@ -2,6 +2,23 @@ import { validationResult } from "express-validator";
 
 import Manga from "../models/manga";
 
+const getManga = async (req, res, next) => {
+  const mangaId = req.params.mangaId;
+
+  try {
+    const manga = await Manga.findById(mangaId);
+    res.status(200).json({
+      message: "Manga retrieved successfully.",
+      manga: manga
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 const createManga = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -87,6 +104,7 @@ const deleteManga = async (req, res, next) => {
 };
 
 export default {
+  getManga: getManga,
   createManga: createManga,
   updateManga: updateManga,
   deleteManga: deleteManga

@@ -1,13 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import cron from "node-cron";
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth";
 import mangasRoutes from "./routes/mangas";
 import usersRoutes from "./routes/users";
-import fetchMangas from "./jobs/fetch";
 
 const app = express();
 dotenv.config();
@@ -35,10 +33,6 @@ app.use((error, req, res, next) => {
   const message = error.message;
   const data = error.data;
   res.status(status).json({ message: message, data: data });
-});
-
-cron.schedule("* 1 * * *", () => {
-  fetchMangas();
 });
 
 // mongoose
