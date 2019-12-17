@@ -21,10 +21,9 @@ router.post(
     body("thumbnailUrl")
       .trim()
       .isLength({ min: 8 }),
-    body("lastChapter").isNumeric(),
-    body("lastLink")
-      .trim()
-      .isLength({ min: 8 })
+    body("source").trim(),
+    body("sourceId").trim(),
+    body("lastChapter").isNumeric()
   ],
   mangasController.createManga
 );

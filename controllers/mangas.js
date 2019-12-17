@@ -31,8 +31,9 @@ const createManga = async (req, res, next) => {
     title: req.body.title,
     desc: req.body.desc,
     thumbnailUrl: req.body.thumbnailUrl,
+    source: req.body.source,
+    sourceId: req.body.sourceId,
     lastChapter: req.body.lastChapter,
-    lastLink: req.body.lastLink
   });
 
   try {
@@ -59,7 +60,6 @@ const updateManga = async (req, res, next) => {
 
   const mangaId = req.params.mangaId;
   const lastChapter = req.body.lastChapter;
-  const lastLink = req.body.lastLink;
 
   try {
     const manga = await Manga.findById(mangaId);
@@ -69,7 +69,6 @@ const updateManga = async (req, res, next) => {
       throw error;
     }
     manga.lastChapter = lastChapter;
-    manga.lastLink = lastLink;
     await manga.save();
     res.status(200).json({
       message: "Manga updated."

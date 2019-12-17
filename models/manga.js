@@ -14,12 +14,16 @@ const mangaSchema = new Schema(
     thumbnailUrl: {
       type: String
     },
-    lastChapter: {
-      type: Number,
+    source: {
+      type: String,
       required: true
     },
-    lastLink: {
+    sourceId: {
       type: String,
+      required: true
+    },
+    lastChapter: {
+      type: Number,
       required: true
     }
   },
