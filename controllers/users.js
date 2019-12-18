@@ -19,6 +19,21 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find().populate("mangas");
+    res.status(200).json({
+      message: "Users retrieved.",
+      users: users
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 const getMangas = async (req, res, next) => {
   const userId = req.userId;
   try {
@@ -95,6 +110,7 @@ const removeManga = async (req, res, next) => {
 
 export default {
   getUser: getUser,
+  getAllUsers: getAllUsers,
   getMangas: getMangas,
   addManga: addManga,
   removeManga: removeManga
