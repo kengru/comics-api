@@ -22,7 +22,7 @@
     "body-parser": "^1.7.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
-    "express": "^4.8.7",
+    "express": "^4.17.3",
     "express-validator": "^6.3.0",
     "jsonwebtoken": "^7.4.3",
     "lodash": "^4.17.21",
